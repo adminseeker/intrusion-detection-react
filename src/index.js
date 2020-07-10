@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+//import TestPage from "./components/TestPage";
+import Dashboard from "./components/Dashboard";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Welcome!!!</h1>
+    <Dashboard />
   </React.StrictMode>,
   document.getElementById('root')
 );
