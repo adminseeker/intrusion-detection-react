@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-//import TestPage from "./components/TestPage";
-import Dashboard from "./components/Dashboard";
+import AppRouter from "./routers/AppRouter";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Dashboard />
+    <AppRouter />
   </React.StrictMode>,
   document.getElementById('root')
 );
