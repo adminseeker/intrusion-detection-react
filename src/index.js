@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import AppRouter from "./routers/AppRouter";
 import LoadingPage from "./components/LoadingPage";
+import ErrorBoundary from "./components/ErrorBoundary";
 import {Provider} from "react-redux";
 import configureStore from "./store/configureStore";
 import {startGetIntrusions} from "./actions/intrusions";
@@ -16,7 +17,9 @@ let hasRendered = false;
 const jsx = (
   <React.StrictMode>
     <Provider store={store}>
+      <ErrorBoundary>
       <AppRouter />
+      </ErrorBoundary>
     </Provider>
   </React.StrictMode>
 );

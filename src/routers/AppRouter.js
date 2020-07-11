@@ -4,6 +4,7 @@ import createHistory from "history/createBrowserHistory"
 import Header from "../components/Header";
 import Dashboard from "../components/Dashboard";
 import IntrusionView from "../components/IntrusionView";
+import NotFoundPage from "../components/NotFoundPage";
 
 const history = createHistory();
 
@@ -16,6 +17,7 @@ const AppRouter = ()=>{
                     <Route path="/" component={Dashboard} exact={true}/>
                     <Route path="/intrusions" component={Dashboard} exact={true}/>
                     <Route path="/intrusions/:id" component={IntrusionView}/>
+                    <Route component={NotFoundPage} />
                 </Switch>
             </div>
         </Router>

@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import selectIntrusions from "../selectors/intrusions";
 
 
+
 const IntrusionList = (props)=>(
     
         <div>
