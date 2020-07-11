@@ -2,6 +2,8 @@ import React from "react";
 import IntrusionListItem from "./IntrusionListItem"
 import {startDeleteAllIntrusions,startDeleteIntrusion} from "../actions/intrusions";
 import {connect} from "react-redux";
+import selectIntrusions from "../selectors/intrusions";
+
 
 const IntrusionList = (props)=>(
     
@@ -31,7 +33,7 @@ const IntrusionList = (props)=>(
     )
 
 const mapStateToProps = (state)=>({
-    intrusions:state.intrusions
+    intrusions:selectIntrusions(state.intrusions,state.filters)
 })
 
 export default connect(mapStateToProps)(IntrusionList);
