@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+
 import moment from "moment";
 
 const IntrusionListItem = (props)=>{
@@ -12,4 +14,4 @@ const IntrusionListItem = (props)=>{
     )
 }
 
-export default IntrusionListItem;
+export default connect()(IntrusionListItem);

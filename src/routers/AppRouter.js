@@ -1,11 +1,14 @@
 import React from "react";
-import {Route, Switch, BrowserRouter} from "react-router-dom";
+import {Route, Switch, Router} from "react-router-dom";
+import createHistory from "history/createBrowserHistory"
 import Dashboard from "../components/Dashboard";
 import IntrusionView from "../components/IntrusionView";
 
+const history = createHistory();
+
 const AppRouter = ()=>{
     return(
-        <BrowserRouter>
+        <Router history={history}>
             <div>
                 <Switch>
                     <Route path="/" component={Dashboard} exact={true}/>
@@ -13,7 +16,7 @@ const AppRouter = ()=>{
                     <Route path="/intrusions/:id" component={IntrusionView}/>
                 </Switch>
             </div>
-        </BrowserRouter>
+        </Router>
     )
 }
 

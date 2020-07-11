@@ -1,46 +1,37 @@
-import React, { Component } from "react";
+import React from "react";
 import IntrusionListItem from "./IntrusionListItem"
-import axios from "axios";
+import {startDeleteAllIntrusions,startDeleteIntrusion} from "../actions/intrusions";
+import {connect} from "react-redux";
 
-class IntrusionList extends Component{
+const IntrusionList = (props)=>(
+    
+        <div>
+            <button onClick={(e)=>{
+                props.dispatch(startDeleteAllIntrusions())
+                props.history.push("/");
+            }}>
+            Delete All
+            </button>
+            {
+                props.intrusions.map((intrusion)=>{
+                    return (
+                            <div key={intrusion._id}>
+                            <IntrusionListItem intrusion={intrusion} history={props.history}/>
+                            <button onClick={(e)=>{
+                                props.dispatch(startDeleteIntrusion(intrusion._id))
+                                props.history.push("/");
+                            }}>
+                            Delete
+                            </button>
+                            </div>
+                        )
+                })
+            }
+        </div>
+    )
 
-    state = {
-        intrusions:[]
-    }
+const mapStateToProps = (state)=>({
+    intrusions:state.intrusions
+})
 
-    getDataFromServer = async ()=>{
-        let toReturn;
-        await axios.get("/intrusions").then((data)=>{
-            toReturn = data;
-        }).catch((e)=>{
-            console.log(e);
-        })
-        console.log("toReturn: "+toReturn);
-        return toReturn;
-    }
-
-    componentDidMount = ()=>{
-        this.getDataFromServer().then((data)=>{
-            console.log(data.data);
-            this.setState({
-                intrusions : data.data
-            });
-        }).catch((e)=>{
-            console.log(e);
-        })
-    }
-
-    render(){
-        return(
-            <div>
-                {
-                    this.state.intrusions.map((intrusion)=>{
-                        return <IntrusionListItem key={intrusion._id} intrusion={intrusion}/>
-                    })
-                }
-            </div>
-        )
-    }
-}
-
-export default IntrusionList;
+export default connect(mapStateToProps)(IntrusionList);

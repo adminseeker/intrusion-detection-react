@@ -1,9 +1,9 @@
 import React from "react";
 import IntrusionList from "./IntrusionsList";
 
-const Dashboard = ()=>(
+const Dashboard = (props)=>(
     <div>
-        <IntrusionList />
+        <IntrusionList history={props.history}/>
     </div>
 )
 
