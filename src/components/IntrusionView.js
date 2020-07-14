@@ -13,7 +13,7 @@ const IntrusionView = (props)=>{
         props.intrusion ? (
         <div>
             <Header history={props.history}/>
-            <h2>There was an Intrusion at {moment( props.intrusion.atTime).format('MMMM Do YYYY, h:mm:ss a')}</h2>
+            <h2>There was an Intrusion on {moment( props.intrusion.atTime).format('MMMM Do YYYY, h:mm:ss a')}</h2>
             <img src = {process.env.REACT_APP_RPI_URL+"/intrusions/images/"+props.intrusion._id +".jpg"} alt={ props.intrusion._id }
             className={`smooth-image image-${
                 imageLoaded ? 'visible' :  'hidden'

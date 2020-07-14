@@ -8,7 +8,7 @@ const IntrusionListItem = (props)=>{
     return(
         <Link to={"/intrusions/"+props.intrusion._id}> 
             <div>
-                <h3>Intrusion detected at: {moment(props.intrusion.atTime).format('MMMM Do YYYY, h:mm:ss a')}</h3>
+                <h3>Intrusion detected on: {moment(props.intrusion.atTime).format('MMMM Do YYYY, h:mm:ss a')}</h3>
             </div>
         </Link>
     )

@@ -35,7 +35,7 @@ renderApp();
 store.subscribe(()=>{
   store.dispatch(startGetIntrusions(store.getState().filters.password)).then((res)=>{
     renderApp()
-})
+  })
 })
 
 serviceWorker.unregister();
