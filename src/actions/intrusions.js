@@ -1,13 +1,14 @@
 import axios from "axios";
+import {setPassword} from "./filters";
 
 const getIntrusions = (intrusions)=>({
     type:"GET_INTRUSIONS",
     intrusions
 });
 
-const startGetIntrusions = ()=>{
+const startGetIntrusions = (password)=>{
     return(dispatch)=>{
-        return axios.get("/intrusions").then((data)=>{  
+        return axios.post(process.env.REACT_APP_RPI_URL+"/intrusions",{"password":password}).then((data)=>{  
             dispatch(getIntrusions(data.data))
         }).catch((e)=>{
             console.log(e);
@@ -20,9 +21,14 @@ const deleteIntrusion = (_id)=>({
     _id
 })
 
-const startDeleteIntrusion = (_id)=>{
+const startDeleteIntrusion = (_id,password)=>{
     return (dispatch)=>{
-        return axios.delete("http://raspberrypi.local:3000/intrusions/delete/"+_id).then(()=>{
+        return axios.delete(process.env.REACT_APP_RPI_URL+"/intrusions/delete/"+_id,
+        {
+            data:{"password":password}
+        }
+    )
+        .then(()=>{
             dispatch(deleteIntrusion(_id));
         }).catch((e)=>{
             console.log(e);
@@ -34,9 +40,13 @@ const deleteAllIntrusions = ()=>({
     type:"DELETE_ALL_INTRUSIONS"
 })
 
-const startDeleteAllIntrusions = ()=>{
+const startDeleteAllIntrusions = (password)=>{
     return (dispatch)=>{
-        return axios.delete("http://raspberrypi.local:3000/intrusions/delete/all").then(()=>{
+        return axios.delete(process.env.REACT_APP_RPI_URL+"/intrusions/delete/all",
+        {
+            data:{"password":password}
+        }
+        ).then(()=>{
             dispatch(deleteAllIntrusions());
         }).catch((e)=>{
             console.log(e);
@@ -44,4 +54,18 @@ const startDeleteAllIntrusions = ()=>{
     }
 }
 
-export {startGetIntrusions,startDeleteIntrusion,startDeleteAllIntrusions};
+const verifyPassword = (password="")=>{
+    return (dispatch)=>{
+        return axios.post(process.env.REACT_APP_RPI_URL+"/verify",{"password":password})
+        .then(async ()=>{
+            console.log("authorized");
+            await dispatch(setPassword(password))
+        })
+        .catch((e)=>{
+            console.log(e);
+        })
+
+    }
+}
+
+export {startGetIntrusions,startDeleteIntrusion,startDeleteAllIntrusions,verifyPassword};

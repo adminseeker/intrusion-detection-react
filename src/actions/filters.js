@@ -3,6 +3,11 @@ const setTextFilter = (text="")=>({
     text
 })
 
+const setPassword = (password="")=>({
+  type:"SET_PASSWORD",
+  password
+})
+
 const setStartDate = (startDate)=>({
     type:"SET_START_DATE",
     startDate
@@ -13,4 +18,4 @@ const setStartDate = (startDate)=>({
     endDate
   })
 
-export {setTextFilter,setStartDate,setEndDate};
+export {setTextFilter,setStartDate,setEndDate,setPassword};

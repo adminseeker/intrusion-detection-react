@@ -11,17 +11,14 @@ import "react-dates/lib/css/_datepicker.css";
 import * as serviceWorker from "./serviceWorker";
 
 const store = configureStore();
-
 let hasRendered = false;
 
 const jsx = (
-  <React.StrictMode>
-    <Provider store={store}>
-      <ErrorBoundary>
-      <AppRouter />
-      </ErrorBoundary>
+        <Provider store={store}>
+          <ErrorBoundary >
+            <AppRouter />
+          </ErrorBoundary>
     </Provider>
-  </React.StrictMode>
 );
 
 ReactDOM.render(<LoadingPage />,document.getElementById("root"));
@@ -33,8 +30,12 @@ const renderApp = ()=>{
   }
 }
 
-store.dispatch(startGetIntrusions()).then((res)=>{
-  renderApp();
+renderApp();
+
+store.subscribe(()=>{
+  store.dispatch(startGetIntrusions(store.getState().filters.password)).then((res)=>{
+    renderApp()
+})
 })
 
 serviceWorker.unregister();

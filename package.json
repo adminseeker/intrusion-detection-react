@@ -12,6 +12,8 @@
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-addons-shallow-compare": "15.6.2",
+    "react-bootstrap": "^1.2.2",
+    "react-confirm-alert": "^2.6.1",
     "react-dates": "12.7.0",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -21,7 +23,6 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
-  "proxy": "http://raspberrypi.local:3000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

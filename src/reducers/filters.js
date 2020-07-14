@@ -3,7 +3,8 @@ import moment from "moment";
 const defaultStateFilters = {
     sortBy:"date",
     startDate: moment().startOf("month"),
-    endDate: moment().endOf("month")
+    endDate: moment().endOf("month"),
+    password:""
 }
 
 const filtersReducer = (state=defaultStateFilters,action)=>{
@@ -17,7 +18,12 @@ const filtersReducer = (state=defaultStateFilters,action)=>{
             return{
                 ...state,
                   endDate:action.endDate
-                }  
+                }
+        case "SET_PASSWORD":
+            return{
+                ...state,
+                password:action.password
+            }  
         default:
             return state;
     }
