@@ -5,5 +5,5 @@ const LoadingPage = ()=>(
     <img className="loader__image" src="/images/loader.gif" alt="loader"/>
   </div>
 )
-
+ 
 export default LoadingPage;
