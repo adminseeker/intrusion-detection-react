@@ -21,6 +21,7 @@ const jsx = (
     </Provider>
 );
 
+if(!hasRendered)
 ReactDOM.render(<LoadingPage />,document.getElementById("root"));
 
 const renderApp = ()=>{
@@ -30,7 +31,8 @@ const renderApp = ()=>{
   }
 }
 
-renderApp();
+ReactDOM.render(jsx,document.getElementById("root"));
+
 
 store.subscribe(()=>{
   store.dispatch(startGetIntrusions(store.getState().filters.password)).then((res)=>{

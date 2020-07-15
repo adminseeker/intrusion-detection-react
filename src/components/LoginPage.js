@@ -12,7 +12,8 @@ const LoginPage = (props)=>{
                  props.dispatch(verifyPassword(password)).then(()=>{
                      props.history.push("/intrusions");
                 }).catch((e)=>{
-                   console.log(e);
+                    console.log(e);
+                    props.history.push("/error")
                 })
             }} >
                 <input type="password" placeholder="Enter Password" value={password} 
@@ -30,4 +31,8 @@ const LoginPage = (props)=>{
     )
 }
 
-export default connect()(LoginPage);
+const mapStateToProps = (state)=>({
+    password: state.filters.password
+})
+
+export default connect(mapStateToProps)(LoginPage);

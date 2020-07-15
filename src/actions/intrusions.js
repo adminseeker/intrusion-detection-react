@@ -61,9 +61,7 @@ const verifyPassword = (password="")=>{
             console.log("authorized");
             await dispatch(setPassword(password))
         })
-        .catch((e)=>{
-            console.log(e);
-        })
+        
 
     }
 }
