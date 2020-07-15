@@ -1,14 +1,18 @@
-import React from "react";
+import React , {useState} from "react";
 import IntrusionListItem from "./IntrusionListItem"
 import {startDeleteAllIntrusions,startDeleteIntrusion} from "../actions/intrusions";
 import {connect} from "react-redux";
 import selectIntrusions from "../selectors/intrusions";
 import { confirmAlert } from "react-confirm-alert"; 
 import "react-confirm-alert/src/react-confirm-alert.css"; 
+import GeneralModal from "./GeneralModal";
 
-const IntrusionList = (props)=>(
-    
+const IntrusionList = (props)=>{
+    const [showModal,setShowModal] = useState(false);
+    const [ModalText,setModalText] = useState("")
+    return(
         <div>
+        <GeneralModal showModal={showModal} text={ModalText}/>
         <div className="container">
         <button onClick={(e)=>{
             confirmAlert({
@@ -18,8 +22,12 @@ const IntrusionList = (props)=>(
                   {
                       label: "Yes",
                       onClick: () => {
-                        props.dispatch(startDeleteAllIntrusions(props.password))
-                        props.history.push("/intrusions");
+                        setShowModal(true);
+                        setModalText("Deleting All Intrusions");
+                        props.dispatch(startDeleteAllIntrusions(props.password)).then(()=>{
+                            setShowModal(false);
+                            props.history.push("/intrusions");
+                        })
                       }
                   },
                   {
@@ -44,8 +52,12 @@ const IntrusionList = (props)=>(
                                       {
                                           label: "Yes",
                                           onClick: () => {
-                                              props.dispatch(startDeleteIntrusion(intrusion._id,props.password))
+                                              setShowModal(true);
+                                              setModalText("Deleting Intrusion");
+                                              props.dispatch(startDeleteIntrusion(intrusion._id,props.password)).then(()=>{
+                                              setShowModal(false);
                                               props.history.push("/intrusions");
+                                            })
                                           }
                                       },
                                       {
@@ -62,6 +74,7 @@ const IntrusionList = (props)=>(
             }
         </div>
     )
+}
 
 const mapStateToProps = (state)=>({
     intrusions:selectIntrusions(state.intrusions,state.filters),

@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import {verifyPassword} from "../actions/intrusions";
 import {connect} from "react-redux";
+import GeneralModal from "./GeneralModal";
 
 
 const LoginPage = (props)=>{
     const [password,setPass] = useState("");
+    const [showModal,setShowModal] = useState(false);
+    const [ModalText,setModalText] = useState("");
     return (
         <div>
+        <GeneralModal showModal={showModal} text={ModalText}/> 
             <form onSubmit={ (e)=>{
                 e.preventDefault();
+                setShowModal(true);
+                setModalText("Logging In");
                  props.dispatch(verifyPassword(password)).then(()=>{
-                     props.history.push("/intrusions");
+                    setShowModal(false) 
+                    props.history.push("/intrusions");    
                 }).catch((e)=>{
                     console.log(e);
-                    props.history.push("/error")
+                    props.history.push("/authError")
                 })
             }} >
                 <input type="password" placeholder="Enter Password" value={password} 

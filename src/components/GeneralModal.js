@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 
-const CheckBoxModal = (props) => {
+const GeneralModal = (props) => {
     return (
       <div>
         <Modal 
@@ -17,4 +17,4 @@ const CheckBoxModal = (props) => {
     );
 }
 
-export default CheckBoxModal;
+export default GeneralModal;

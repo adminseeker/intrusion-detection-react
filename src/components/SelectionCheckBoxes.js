@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {connect} from "react-redux";
 import {startSetSelections} from "../actions/selections";
-import CheckBoxModal from "./CheckBoxModal";
+import GeneralModal from "./GeneralModal";
 
 const SelectionCheckBoxes = (props)=>{
     const [camera,setCamera] = useState(!!props.selections.camera);
@@ -11,7 +11,7 @@ const SelectionCheckBoxes = (props)=>{
     const [ModalText,setModalText] = useState("");
     return(
         <div>
-            <CheckBoxModal showModal={showModal} text={ModalText}/>
+            <GeneralModal showModal={showModal} text={ModalText}/>
             <input type="checkbox" name="camera" checked={!!camera} onChange={()=>{
                 setShowModal(true);
                 !!camera ? setModalText("Turning off Camera") : setModalText("Turning on Camera");
