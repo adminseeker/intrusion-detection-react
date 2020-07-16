@@ -13,9 +13,9 @@ const Dashboard = (props)=>{
         <div>
             {!props.password && <AuthErrorPage history={props.history}/> }
             {props.password && <Header history={props.history}/>}
-            {props.password && <IntrusionListFilters />}
-            {props.selections.id === "options"  &&( <SelectionCheckBoxes  selections={props.selections} password={props.password}/> )}
-            {props.password && <IntrusionList history={props.history}/>}
+            {props.selections.id === "options"  && ( <SelectionCheckBoxes  selections={props.selections} password={props.password}/> )}
+            {props.selections.id === "options"  && <IntrusionListFilters password={props.password}/>}
+            {props.selections.id === "options" && <IntrusionList history={props.history} />}
         </div>
     )
 }

@@ -10,7 +10,13 @@ const LoginPage = (props)=>{
     const [ModalText,setModalText] = useState("");
     return (
         <div>
-        <GeneralModal showModal={showModal} text={ModalText}/> 
+        <GeneralModal 
+            modal = {"login_modal"}
+            loader_image={"51.gif"}
+            modal__title = {"login_modal__title"}
+            showModal={showModal} 
+            text={ModalText}
+        /> 
             <form onSubmit={ (e)=>{
                 e.preventDefault();
                 setShowModal(true);
@@ -19,6 +25,7 @@ const LoginPage = (props)=>{
                     setShowModal(false) 
                     props.history.push("/intrusions");    
                 }).catch((e)=>{
+                    setShowModal(false);
                     console.log(e);
                     props.history.push("/authError")
                 })
@@ -38,8 +45,4 @@ const LoginPage = (props)=>{
     )
 }
 
-const mapStateToProps = (state)=>({
-    password: state.filters.password
-})
-
-export default connect(mapStateToProps)(LoginPage);
+export default connect()(LoginPage);

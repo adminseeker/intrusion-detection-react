@@ -57,9 +57,9 @@ const startDeleteAllIntrusions = (password)=>{
 const verifyPassword = (password="")=>{
     return (dispatch)=>{
         return axios.post(process.env.REACT_APP_RPI_URL+"/verify",{"password":password})
-        .then(async ()=>{
+        .then( ()=>{
             console.log("authorized");
-            await dispatch(setPassword(password))
+             dispatch(setPassword(password))
         })
         
 

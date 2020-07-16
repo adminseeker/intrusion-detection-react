@@ -3,17 +3,19 @@ import Modal from "react-modal";
 
 const GeneralModal = (props) => {
     return (
-      <div>
         <Modal 
            isOpen={props.showModal}
            contentLabel="Loading"
            closeTimeoutMS={200}
            ariaHideApp={false}
+           className={props.modal}
         >
-          <h1>{props.text}</h1>
-          <img className="loader__image" src="/images/loader.gif" alt="loader"/>
+          <div>
+            <img className="loader__image" src={"/images/"+props.loader_image} alt={"loader/"+props.loader_image}/>
+          </div>
+          <h3 className={props.modal__title}>{props.text}</h3>
+          <div></div>
         </Modal>
-      </div>
     );
 }
 

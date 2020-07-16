@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {connect} from "react-redux";
 import moment from "moment";
 import {startDeleteIntrusion} from "../actions/intrusions";
-import NotFoundPage from "./NotFoundPage";
 import Header from "./Header";
 import { confirmAlert } from "react-confirm-alert"; 
 import "react-confirm-alert/src/react-confirm-alert.css"; 
@@ -18,10 +17,10 @@ const IntrusionView = (props)=>{
     return(
         props.intrusion ? (
         <div>
-            <GeneralModal showModal={showModal} text={ModalText}/>
+            <GeneralModal modal={"checkbox_modal"} loader_image={"54.gif"} modal__title = {"modal__title"} showModal={showModal} text={ModalText} />
             <Header history={props.history}/>
             <h2>There was an Intrusion on {moment( props.intrusion.atTime).format('MMMM Do YYYY, h:mm:ss a')}</h2>
-            {imageError && <h3>Your Camera was turned off when this intrusion was captured.</h3>}
+            {imageError && <h3>Your Camera was turned off when this intrusion was detected.</h3>}
             {!imageError && <img src = {process.env.REACT_APP_RPI_URL+"/intrusions/images/"+props.intrusion._id +".jpg"} alt={ props.intrusion._id }
             className={`smooth-image image-${
                 imageLoaded ? 'visible' :  'hidden'

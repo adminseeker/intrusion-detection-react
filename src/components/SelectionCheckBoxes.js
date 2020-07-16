@@ -10,9 +10,12 @@ const SelectionCheckBoxes = (props)=>{
     const [showModal,setShowModal] = useState(false);
     const [ModalText,setModalText] = useState("");
     return(
-        <div>
-            <GeneralModal showModal={showModal} text={ModalText}/>
-            <input type="checkbox" name="camera" checked={!!camera} onChange={()=>{
+        <div className="list-checkboxes">
+        <div className="content-container">
+        <div className="list-header">
+            <GeneralModal showModal={showModal} text={ModalText} loader_image={"53.gif"} modal__title = {"modal__title"} modal={"checkbox_modal"} />
+            <label className="list-header__title" htmlFor="camera">Camera</label>
+            <input className="list-header__title" type="checkbox" name="camera" checked={!!camera} onChange={()=>{
                 setShowModal(true);
                 !!camera ? setModalText("Turning off Camera") : setModalText("Turning on Camera");
                 props.dispatch(startSetSelections(props.password,{camera:!camera,buzzer,notifications}))
@@ -21,8 +24,8 @@ const SelectionCheckBoxes = (props)=>{
                     setShowModal(false);
                 })
             }}/>
-                <label htmlFor="camera">camera</label><br />
-            <input type="checkbox" name="buzzer" checked={!!buzzer} onChange={()=>{
+            <label className="list-header__title" htmlFor="buzzer">Buzzer</label>
+            <input className="list-header__title" type="checkbox" name="buzzer" checked={!!buzzer} onChange={()=>{
                 setShowModal(true);
                 !!buzzer ? setModalText("Turning off Buzzer") : setModalText("Turning on Buzzer");
                 props.dispatch(startSetSelections(props.password,{camera,buzzer:!buzzer,notifications})) 
@@ -31,8 +34,8 @@ const SelectionCheckBoxes = (props)=>{
                     setShowModal(false);
                 })
             }}/>
-                <label htmlFor="buzzer">buzzer</label><br />
-            <input type="checkbox" name="notifications" checked={!!notifications} onChange={()=>{
+            <label className="list-header__title" htmlFor="notifications">Notifications</label>
+            <input className="list-header__title" type="checkbox" name="notifications" checked={!!notifications} onChange={()=>{
                 setShowModal(true);
                 !!notifications ? setModalText("Turning off Notifications") : setModalText("Turning on Notifications");
                 props.dispatch(startSetSelections(props.password,{camera,buzzer,notifications:!notifications}))
@@ -41,7 +44,8 @@ const SelectionCheckBoxes = (props)=>{
                     setNotifications(!notifications);
                 })
             }}/>
-                <label htmlFor="notifications">notifications</label><br /><br />
+         </div>
+         </div>
          </div>
     )
 }
