@@ -1,5 +1,6 @@
 import React from "react";
 import {Route, Switch, Router} from "react-router-dom";
+import {connect} from "react-redux";
 import createHistory from "history/createBrowserHistory"
 import Dashboard from "../components/Dashboard";
 import IntrusionView from "../components/IntrusionView";

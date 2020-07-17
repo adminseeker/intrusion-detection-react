@@ -27,7 +27,7 @@ const IntrusionView = (props)=>{
                 <img  src = {process.env.REACT_APP_RPI_URL+"/intrusions/images/"+props.intrusion._id +".jpg"} alt={ props.intrusion._id } 
             className={`smooth-image image-${
                 imageLoaded ? 'visible' :  'hidden'
-              }` + "intrusion-image"}
+              }` }
               onLoad={()=> setImageLoaded(true)}
               onError={()=>{
                   setImageError(true)
