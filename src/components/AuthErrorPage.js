@@ -10,4 +10,4 @@ const AuthErrorPage = (props)=>{
     )
 }
 
-export default AuthErrorPage;
+export default AuthErrorPage; 
