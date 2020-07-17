@@ -12,13 +12,13 @@ const IntrusionListItem = (props)=>{
     const [ModalText,setModalText] = useState("");
     const [showModal,setShowModal] = useState(false);
     return(
-        <div>
-        <Link className="list-item" to={"/intrusions/"+props.intrusion._id}> 
+        <div className="list-item">
+        <Link className="list-item link" to={"/intrusions/"+props.intrusion._id}> 
                 <h3 className="list-item__data">Intrusion detected on: {moment(props.intrusion.atTime).format('MMMM Do YYYY, h:mm:ss a')}</h3>
                 </Link>
                 <GeneralModal loader_image={"54.gif"} modal={"checkbox_modal"}  modal__title = {"modal__title"} showModal={showModal} text={ModalText} />          
                 
-                <button className="button button--secondary pos_right" onClick={(e)=>{
+                <button className="button button--secondary" onClick={(e)=>{
                                 confirmAlert({
                                     title: "Confirm to delete this intrusion",
                                     message: "Are you sure you want to delete this ?",

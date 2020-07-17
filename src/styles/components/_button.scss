@@ -29,4 +29,13 @@
 .button-load-intrusions{
   position: relative;
   left: 50px;
+  height: 49.6px;
+  float: inherit;
+  background: green;
+}
+
+.view-buttons{
+  display: flex;
+  justify-content: space-around;
+  
 }

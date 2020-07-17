@@ -21,7 +21,7 @@ const LoadIntrusions =(props)=>{
                     })
                 }}
             >Load Intrusions</button>
-        </span>
+            </span>
     )
 }
 

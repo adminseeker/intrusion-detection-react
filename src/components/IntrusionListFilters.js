@@ -26,9 +26,11 @@ const IntrusionListFilters = (props)=>{
         isOutsideRange={() => false}
       />
       <LoadIntrusions {...props}/>
+      </div>
+      
         </div>
         </div>
-        </div>
+       
     )
 };
 

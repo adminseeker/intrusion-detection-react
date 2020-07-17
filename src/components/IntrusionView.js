@@ -16,23 +16,34 @@ const IntrusionView = (props)=>{
     const [ModalText,setModalText] = useState("");
     return(
         props.intrusion ? (
-        <div>
-            <GeneralModal modal={"checkbox_modal"} loader_image={"54.gif"} modal__title = {"modal__title"} showModal={showModal} text={ModalText} />
+            <div>
             <Header history={props.history}/>
+        <div className="content-container-image">
+            <GeneralModal modal={"checkbox_modal"} loader_image={"54.gif"} modal__title = {"modal__title"} showModal={showModal} text={ModalText} />
             <h2>There was an Intrusion on {moment( props.intrusion.atTime).format('MMMM Do YYYY, h:mm:ss a')}</h2>
             {imageError && <h3>Your Camera was turned off when this intrusion was detected.</h3>}
-            {!imageError && <img src = {process.env.REACT_APP_RPI_URL+"/intrusions/images/"+props.intrusion._id +".jpg"} alt={ props.intrusion._id }
+            {!imageError &&
+                <div className="intrusion-image">
+                <img  src = {process.env.REACT_APP_RPI_URL+"/intrusions/images/"+props.intrusion._id +".jpg"} alt={ props.intrusion._id } 
             className={`smooth-image image-${
                 imageLoaded ? 'visible' :  'hidden'
-              }`}
+              }` + "intrusion-image"}
               onLoad={()=> setImageLoaded(true)}
               onError={()=>{
                   setImageError(true)
               }}
             />
+            </div>
             }
-            <div className="container">
-                <button onClick={(e)=>{
+            <div className="view-buttons">
+            <button 
+                className="button"
+                onClick={()=>{props.history.push("/intrusions");}}>
+                Go Back
+                </button>
+                <button 
+                    className="button button--secondary"
+                    onClick={(e)=>{
                     confirmAlert({
                         title: "Confirm to delete this intrusion",
                         message: "Are you sure you want to delete this ?",
@@ -55,11 +66,11 @@ const IntrusionView = (props)=>{
                                 ]
                     });
                 }}>Delete</button>
-            </div>
-            <button onClick={()=>{props.history.push("/intrusions");}}>
-                Go Back
-            </button>
-        </div>) : <AuthErrorPage history={props.history}/>
+           
+                </div>
+        </div>
+        </div>
+        ) : <AuthErrorPage history={props.history}/>
     )
 }
 
